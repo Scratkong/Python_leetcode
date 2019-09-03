@@ -41,7 +41,6 @@ class Solution(object):
                     while j < k and nums[k] == nums[k-1]:
                         k-=1
                 elif nums[j] + nums[k] < -nums[i]:
-                    # if nums[j] + nums[k] > -nums[i] this i,j cannot get the result 0 in this nums
                     j += 1
                 else:
                     k -= 1
