@@ -53,10 +53,32 @@ class Solution(object):
         #     elif s[i] = '[' and s[len(s)-i] !=']':
         #         return False
         #     elif s[i] = '{' and s[len(s)-i] != '}':
+        #     .......
 
         # solution 1
-        while '{}' in s or '()' in s or '[]' in s:
-            s = s.replace('{}','')
-            s = s.replace('[]','')
-            s = s.replace('()','')
-        return s == ''
+        # while '{}' in s or '()' in s or '[]' in s:
+        #     s = s.replace('{}','')
+        #     s = s.replace('[]','')
+        #     s = s.replace('()','')
+        # return s == ''
+        # BAD  waste to much time
+
+
+        # solution 2
+        ls = []
+        for i in range(len(s)):
+            # 左括号入栈
+            if s[i] == '(' or s[i] == '[' or s[i] == '{':
+                ls.append(s[i])
+                continue
+            if len(ls) == 0:
+                return False
+            # 出栈比较是否匹配
+            p = ls.pop()
+            if (p == '(' and s[i] == ')') or ( p == '[' and s[i] == ']') or (p == '{' and s[i] == '}'):
+                continue
+            else:
+                return False
+        if len(ls) > 0 :
+            return False
+        return True
